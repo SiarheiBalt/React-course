@@ -1,0 +1,10 @@
+.nav {
+    grid-area: n;
+    background-color: rgb(179, 134, 98);
+}
+.item {
+  color: whitesmoke;
+}
+.activ .item {
+  color: gold;
+}
