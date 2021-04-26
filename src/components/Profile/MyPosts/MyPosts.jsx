@@ -5,10 +5,9 @@ import Post from './Post/Post'
 const MyPosts = () => {
     return <div>My post
             <div className={cl.posts}>
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                <Post message="Hi, wat's up!" like="15"/>
+                <Post message="This is my first props!" like="20"/>
+                
             </div>           
         </div>
 } 

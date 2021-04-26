@@ -1,12 +1,12 @@
 import cl from './Post.module.css'
 
-const Post = () => {
+const Post = (props) => {
     return <div className={cl.item}>
         <img src="https://image.flaticon.com/icons/png/512/168/168732.png"/>
         <br/>
-        post 
+        {props.message}
         <div>
-            <button>like</button>
+            <button>like {props.like}</button>
         </div>
     </div>
              
