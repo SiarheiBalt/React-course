@@ -18,8 +18,8 @@ const App = () => {
         <Header />
         <NavBar />
         <div className="app_wrapper__content">
-          <Route path="/Dialogs" component={Dialogs} />
           <Route path="/Profile" component={Profile} />
+          <Route path="/Dialogs" component={Dialogs} />
           <Route path="/News" component={News} />
           <Route path="/Music" component={Music} />
           <Route path="/Setting" component={Setting} />
