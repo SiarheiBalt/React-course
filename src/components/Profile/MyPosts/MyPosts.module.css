@@ -2,3 +2,9 @@
 .posts {
   background-color: rgb(222, 222, 230);
 }
+.posts__block {
+  padding: 10px;
+}
+.button {
+  margin-bottom: 10px;
+}

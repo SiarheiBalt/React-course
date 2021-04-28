@@ -2,6 +2,12 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
+.dialog a.activ {
+    color: gold;
+}
+.dialog a {
+    text-decoration: none;
+}
 .dialogs__items {
     padding: 10px;
 }
