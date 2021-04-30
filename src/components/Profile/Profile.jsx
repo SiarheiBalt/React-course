@@ -2,10 +2,11 @@ import MyPosts from './MyPosts/MyPosts'
 import cl from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Ppofile = () => {
+const Ppofile = (props) => {
+
     return <div>
         <ProfileInfo />
-        <MyPosts />
+        <MyPosts data = {props.data}/>
     </div>
 } 
 
