@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
-
+import { addPost, updateNewPostText } from './redux/state';
 
 const App = (props) => {
   
@@ -18,10 +18,11 @@ const App = (props) => {
     <BrowserRouter>
       <div className="app__wrapper">
         <Header />
-        <NavBar />
+        <NavBar data={props.data.sideBar}/>
         <div className="app_wrapper__content">
-          <Route path="/Profile" render={() => <Profile data={props.data.postsData}/>} />
-          <Route path="/Dialogs" render={() => <Dialogs dataMessage={props.data.messagesData} dataUser={props.data.usersData} />} />
+          <Route path="/Profile" render={() => <Profile data={props.data.profilePage.postsData} addPost={addPost} 
+          newPostText={props.data.profilePage.newPostText} updateNewPostText={updateNewPostText} />} />
+          <Route path="/Dialogs" render={() => <Dialogs data={props.data.messagesPages} />} />
           <Route path="/News" render={() => <News />} />
           <Route path="/Music" render={() => <Music />} />
           <Route path="/Setting" render={() => <Setting />} />

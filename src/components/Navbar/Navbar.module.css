@@ -14,3 +14,7 @@
 .item a.activ {
   color:gold;
 }
+.friends__item {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,7 +1,11 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 1fr 10fr;
 }
+.dialog {
+    margin-top: 10px;
+}
+
 .dialog a.activ {
     color: gold;
 }
@@ -14,9 +18,27 @@
 .dialogs__items .active {
     color: gold;
 }
+.message {
+    background-color: gainsboro;
+    margin: 10px;
+    border-radius: 5px;
+    height: 30px;
+}
 .messages {
- padding: 10px;
+    padding: 10px;
+    background-color: rgb(179, 173, 173);
 }
 .messages .message {
 
+}
+.message img {
+    width: 40px;
+}
+.dialog img {
+    width: 40px;
+    border-radius: 50%;
+    display: block;
+}
+.textArea {
+    grid-column-start: 2;
 }
