@@ -7,17 +7,19 @@ import cl from './Dialogs.module.css'
 
 
 
-const Dialogs = (props) => {
+const Dialogs = (props) => {  
 
-    let messagesElement = props.data.messagesData.map( el => <Message message={el.message} />)
-    let dialogsElement = props.data.usersData.map( el => <DialogItem data={el} />);
+    let messagesElement = props.messagesPages.messagesData.map( el => <Message message={el.message} />)
+    let dialogsElement = props.messagesPages.usersData.map( el => <DialogItem data={el} />);
 
     let newMessageElement = React.createRef();
     let sendMessage = () => {
-        let text = newMessageElement.current.value;
-        alert(text)
+        props.dispatch({type: 'ADD-MESSAGE'})     
     }
-
+    let onMessageChange = () => {
+        // props.updateNewMessageText(newMessageElement.current.value);
+        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: newMessageElement.current.value })
+    }
     return (
         <div className={cl.dialogs}>
            <div className={cl.dialogs__items}>
@@ -28,7 +30,7 @@ const Dialogs = (props) => {
            </div> 
            <div className={cl.textArea}>
                <button onClick={sendMessage}>Send</button>
-               <textarea ref={newMessageElement}></textarea>
+               <textarea ref={newMessageElement} onChange={onMessageChange} value={props.messagesPages.newMessageText}></textarea>
            </div>
         </div>
     )
