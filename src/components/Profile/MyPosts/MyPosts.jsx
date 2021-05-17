@@ -1,4 +1,5 @@
 import React from 'react'
+import { addPostActinCreator, updateNewPostActionCreator } from '../../../redux/reducer-profilePages'
 import cl from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -8,12 +9,13 @@ const MyPosts = (props) => {
     let postsItem = props.profilePage.postsData.map( el =>  <Post message={el.message} like={el.like}/>)
     let newPostElement = React.createRef();
 
+
     let addPost = () => {
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(addPostActinCreator())
     }
 
     let onPostChange = () => {
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value})
+        props.dispatch(updateNewPostActionCreator(newPostElement.current.value))
     }
 
     return <div className={cl.posts__block}>
