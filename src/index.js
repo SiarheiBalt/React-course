@@ -10,7 +10,7 @@ const renderEntireTree = (state) => {
     ReactDOM.render(
       <React.StrictMode>
         <App profilePage={state.profilePage} messagesPages={state.messagesPages} 
-           sideBar={state.sideBar.friends} dispatch={store.dispatch.bind(store)}/>
+           sideBar={state.sideBar.friends} dispatch={store.dispatch.bind(store)} store={store}/>
       </React.StrictMode>,
       document.getElementById('root')
     );

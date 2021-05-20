@@ -10,6 +10,8 @@ import { BrowserRouter } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 
 const App = (props) => {
   
@@ -17,10 +19,10 @@ const App = (props) => {
     <BrowserRouter>
       <div className="app__wrapper">
         <Header />
-        <NavBar sideBar={props.sideBar}/>
+        <NavbarContainer store={props.store}/>
         <div className="app_wrapper__content">
-          <Route path="/Profile" render={() => <Profile profilePage={props.profilePage} dispatch={props.dispatch}/>} />
-          <Route path="/Dialogs" render={() => <Dialogs  messagesPages={props.messagesPages} dispatch={props.dispatch}/>} />
+          <Route path="/Profile" render={() => <Profile store={props.store} />} />
+          <Route path="/Dialogs" render={() => <DialogsContainer store={props.store} />} />
           <Route path="/News" render={() => <News />} />
           <Route path="/Music" render={() => <Music />} />
           <Route path="/Setting" render={() => <Setting />} />

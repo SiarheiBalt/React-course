@@ -3,7 +3,7 @@ import Friends from '../Sidebar/Friends';
 import cl from './Navbar.module.css'
 
 const NavBar = (props) => {
-    let friendsElement = props.sideBar.map((el) => <Friends data={el}/>)
+    let friendsElement = props.sideBar.friends.map((el) => <Friends data={el}/>)
     
     return <nav className={cl.nav}>
         <div className={cl.item}><NavLink to="/Profile" activeClassName={cl.activ}>Profile</NavLink></div>
