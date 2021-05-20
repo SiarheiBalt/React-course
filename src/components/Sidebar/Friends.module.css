@@ -1,0 +1,9 @@
+
+.friends {
+    font-size: 12px;
+}
+.friends img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
