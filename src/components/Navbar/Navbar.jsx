@@ -3,6 +3,7 @@ import Friends from '../Sidebar/Friends';
 import cl from './Navbar.module.css'
 
 const NavBar = (props) => {
+    console.log(props);
     let friendsElement = props.sideBar.friends.map((el) => <Friends data={el}/>)
     
     return <nav className={cl.nav}>

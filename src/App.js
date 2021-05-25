@@ -19,10 +19,10 @@ const App = (props) => {
     <BrowserRouter>
       <div className="app__wrapper">
         <Header />
-        <NavbarContainer store={props.store}/>
+        <NavbarContainer />
         <div className="app_wrapper__content">
-          <Route path="/Profile" render={() => <Profile store={props.store} />} />
-          <Route path="/Dialogs" render={() => <DialogsContainer store={props.store} />} />
+          <Route path="/Profile" render={() => <Profile />} />
+          <Route path="/Dialogs" render={() => <DialogsContainer />} />
           <Route path="/News" render={() => <News />} />
           <Route path="/Music" render={() => <Music />} />
           <Route path="/Setting" render={() => <Setting />} />

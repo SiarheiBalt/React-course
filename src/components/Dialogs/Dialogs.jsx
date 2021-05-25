@@ -9,9 +9,9 @@ import { onMessageChangeActionCreator, sendMessageActionCreator } from '../../re
 
 
 const Dialogs = (props) => {  
-
-    let messagesElement = props.messagesData.map( el => <Message message={el.message} />)
-    let dialogsElement = props.usersData.map( el => <DialogItem data={el} />);
+    
+    let messagesElement = props.messagesPages.messagesData.map( el => <Message message={el.message} />)
+    let dialogsElement = props.messagesPages.usersData.map( el => <DialogItem data={el} />);
 
     let newMessageElement = React.createRef();
     
@@ -29,7 +29,7 @@ const Dialogs = (props) => {
            </div> 
            <div className={cl.textArea}>
                <button onClick={props.sendMessage}>Send</button>
-               <textarea placeholder={"Enter your message."} ref={newMessageElement} onChange={onMessageChange} value={props.newMessageText}></textarea>
+               <textarea placeholder={"Enter your message."} ref={newMessageElement} onChange={onMessageChange} value={props.messagesPages.newMessageText}></textarea>
            </div>
         </div>
     )
