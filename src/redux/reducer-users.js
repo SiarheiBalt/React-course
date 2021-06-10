@@ -3,52 +3,29 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
+const TOOGLE_IS_FETCHING = "TOOGLE_IS_FETCHING";
 
-export let followAC = (userId) => ({ type: FOLLOW, userId });
-export let unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
-export let setUsersAC = (users) => ({ type: SET_USERS, users });
-export let setCurrentPageAC = (currentPage) => ({
+export let follow = (userId) => ({ type: FOLLOW, userId });
+export let unfollow = (userId) => ({ type: UNFOLLOW, userId });
+export let setUsers = (users) => ({ type: SET_USERS, users });
+export let setCurrentPage = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 });
-export let setTotalUserCountAC = (totalCount) => ({
+export let setTotalUserCount = (totalCount) => ({
   type: SET_USERS_TOTAL_COUNT,
   totalCount,
 });
-
+export let toogleIsFetching = (isFetching) => ({
+  type: TOOGLE_IS_FETCHING,
+  isFetching,
+});
 let initialState = {
-  users: [
-    //     {
-    //       id: 1,
-    //       fullName: "Dima",
-    //       status: "I am a boss.",
-    //       location: { sity: "Minsk", country: "Belarus" },
-    //       followed: true,
-    //       urlFoto:
-    //         "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg",
-    //     },
-    //     {
-    //       id: 2,
-    //       fullName: "Stas",
-    //       status: "Witam Pa nstwo!",
-    //       location: { sity: "Varshava", country: "Polska" },
-    //       followed: false,
-    //       urlFoto:
-    //         "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg",
-    //     },
-    //     {
-    //       id: 3,
-    //       fullName: "Vladlen",
-    //       status: "I do what I want.",
-    //       location: { sity: "Grodno", country: "Belarus" },
-    //       followed: true,
-    //       urlFoto:
-    //         "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg",
-    //     },
-  ],
+  users: [],
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
+  isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -87,6 +64,12 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         totalUsersCount: action.totalCount / 100,
+      };
+    }
+    case TOOGLE_IS_FETCHING: {
+      return {
+        ...state,
+        isFetching: action.isFetching,
       };
     }
 

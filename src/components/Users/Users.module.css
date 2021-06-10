@@ -5,4 +5,5 @@
 .selected_Page {
   font-weight: bold;
   background-color: gray;
+  margin: 3px;
 }
