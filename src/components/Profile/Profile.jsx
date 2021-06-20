@@ -1,13 +1,15 @@
-import MyPosts from './MyPosts/MyPosts'
-import MyPostsContainer from './MyPosts/MyPostsContainer';
-import cl from './Profile.module.css'
-import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import cl from "./Profile.module.css";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Ppofile = () => {
-    return <div>
-        <ProfileInfo />
-        <MyPostsContainer />
+const Ppofile = ({ profile }) => {
+  return (
+    <div>
+      <ProfileInfo profile={profile} />
+      <MyPostsContainer />
     </div>
-} 
+  );
+};
 
 export default Ppofile;

@@ -1,9 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Header from "./components/Header/Header";
-import NavBar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
+
 import { Route } from "react-router";
 import { Profiler } from "react";
 import { BrowserRouter } from "react-router-dom";
@@ -13,15 +10,17 @@ import Setting from "./components/Setting/Setting";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app__wrapper">
-        <Header />
+        <HeaderContainer />
         <NavbarContainer />
         <div className="app_wrapper__content">
-          <Route path="/Profile" render={() => <Profile />} />
+          <Route path="/Profile/:userId?" render={() => <ProfileContainer />} />
           <Route path="/Dialogs" render={() => <DialogsContainer />} />
           <Route path="/Users" render={() => <UsersContainer />} />
           <Route path="/News" render={() => <News />} />

@@ -1,7 +1,10 @@
 import cl from "./Users.module.css";
 import userPhoto from "../../assets/image/ava.png";
+import { NavLink } from "react-router-dom";
+import { unfollowApi, followApi } from "./../../api/api";
 
 const Users = (props) => {
+  // debugger;
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
@@ -23,14 +26,38 @@ const Users = (props) => {
       {props.users.map((el) => (
         <div key={el.id}>
           <div>
-            <img
-              className={cl.image}
-              src={el.photos.small !== null ? el.photos.small : userPhoto}
-            />
+            <NavLink to={`/Profile/${el.id}`}>
+              <img
+                className={cl.image}
+                src={el.photos.small !== null ? el.photos.small : userPhoto}
+              />
+            </NavLink>
             {el.followed ? (
-              <button onClick={() => props.unfollow(el.id)}>Unfollow</button>
+              <button
+                disabled={props.followingInProgress.some((id) => id === el.id)}
+                onClick={() => {
+                  props.toogleFollowingInProgress(true, el.id);
+                  unfollowApi(el.id).then((data) => {
+                    data.resultCode == 0 && props.unfollow(el.id);
+                    props.toogleFollowingInProgress(false, el.id);
+                  });
+                }}
+              >
+                Unfollow
+              </button>
             ) : (
-              <button onClick={() => props.follow(el.id)}>Follow</button>
+              <button
+                disabled={props.followingInProgress.some((id) => id === el.id)}
+                onClick={() => {
+                  props.toogleFollowingInProgress(true, el.id);
+                  followApi(el.id).then((data) => {
+                    data.resultCode == 0 && props.follow(el.id);
+                    props.toogleFollowingInProgress(false, el.id);
+                  });
+                }}
+              >
+                Follow
+              </button>
             )}
             <div>{el.name}</div>
             <h6>el.location.countryh el.location.sity</h6>
