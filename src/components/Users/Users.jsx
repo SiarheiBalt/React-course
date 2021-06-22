@@ -1,7 +1,6 @@
 import cl from "./Users.module.css";
 import userPhoto from "../../assets/image/ava.png";
 import { NavLink } from "react-router-dom";
-import { unfollowApi, followApi } from "./../../api/api";
 
 const Users = (props) => {
   // debugger;
@@ -36,11 +35,7 @@ const Users = (props) => {
               <button
                 disabled={props.followingInProgress.some((id) => id === el.id)}
                 onClick={() => {
-                  props.toogleFollowingInProgress(true, el.id);
-                  unfollowApi(el.id).then((data) => {
-                    data.resultCode == 0 && props.unfollow(el.id);
-                    props.toogleFollowingInProgress(false, el.id);
-                  });
+                  props.unfollowThunk(el.id);
                 }}
               >
                 Unfollow
@@ -49,11 +44,7 @@ const Users = (props) => {
               <button
                 disabled={props.followingInProgress.some((id) => id === el.id)}
                 onClick={() => {
-                  props.toogleFollowingInProgress(true, el.id);
-                  followApi(el.id).then((data) => {
-                    data.resultCode == 0 && props.follow(el.id);
-                    props.toogleFollowingInProgress(false, el.id);
-                  });
+                  props.followThunk(el.id);
                 }}
               >
                 Follow

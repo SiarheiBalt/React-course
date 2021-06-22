@@ -1,3 +1,5 @@
+import { authApi } from "../api/api";
+
 const SET_USER_DATA = "SET_USER_DATA";
 
 let imitialState = {
@@ -25,6 +27,14 @@ const authReducer = (state = imitialState, action) => {
     default:
       return state;
   }
+};
+
+export const getMeAuthThunk = () => {
+  return (dispatch) => {
+    authApi.me().then((data) => {
+      data.resultCode === 0 && dispatch(setAuthUserData(data.data));
+    });
+  };
 };
 
 export default authReducer;

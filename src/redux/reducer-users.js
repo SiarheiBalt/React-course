@@ -1,3 +1,5 @@
+import { usersApi } from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -93,8 +95,37 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export const getUsersThunkCreator = () => {
-  return (dispatch) => {};
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setCurrentPage(currentPage));
+    dispatch(toogleIsFetching(true));
+    usersApi.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toogleIsFetching(false));
+      dispatch(setUsers(data.items));
+
+      dispatch(setTotalUserCount(data.totalCount));
+    });
+  };
+};
+
+export const followThunk = (userId) => {
+  return (dispatch) => {
+    dispatch(toogleFollowingInProgress(true, userId));
+    usersApi.follow(userId).then((data) => {
+      data.resultCode == 0 && dispatch(follow(userId));
+      dispatch(toogleFollowingInProgress(false, userId));
+    });
+  };
+};
+
+export const unfollowThunk = (userId) => {
+  return (dispatch) => {
+    dispatch(toogleFollowingInProgress(true, userId));
+    usersApi.unfollow(userId).then((data) => {
+      data.resultCode == 0 && dispatch(unfollow(userId));
+      dispatch(toogleFollowingInProgress(false, userId));
+    });
+  };
 };
 
 export default usersReducer;

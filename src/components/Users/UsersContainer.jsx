@@ -1,35 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUsers } from "../../api/api";
+
 import {
-  follow,
   setCurrentPage,
-  setUsers,
-  unfollow,
-  setTotalUserCount,
-  toogleIsFetching,
-  toogleFollowingInProgress,
+  getUsersThunkCreator,
+  followThunk,
+  unfollowThunk,
 } from "../../redux/reducer-users";
 import { Preloader } from "../Common/Preloader/Preloader";
 import Users from "./Users";
 
 class UsersApiComponent extends React.Component {
   componentDidMount() {
-    this.props.toogleIsFetching(true);
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.toogleIsFetching(false);
-      this.props.setUsers(data.items);
-
-      this.props.setTotalUserCount(data.totalCount);
-    });
+    this.props.getUsersThunkCreator(
+      this.props.currentPage,
+      this.props.pageSize
+    );
   }
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toogleIsFetching(true);
-    getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.toogleIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
   };
   render() {
     return (
@@ -44,7 +33,8 @@ class UsersApiComponent extends React.Component {
           unfollow={this.props.unfollow}
           follow={this.props.follow}
           followingInProgress={this.props.followingInProgress}
-          toogleFollowingInProgress={this.props.toogleFollowingInProgress}
+          followThunk={this.props.followThunk}
+          unfollowThunk={this.props.unfollowThunk}
         />
       </>
     );
@@ -63,13 +53,10 @@ const mapStateToProps = (state) => {
 };
 
 const UsersContainer = connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUserCount,
-  toogleIsFetching,
-  toogleFollowingInProgress,
+  getUsersThunkCreator,
+  followThunk,
+  unfollowThunk,
 })(UsersApiComponent);
 
 export default UsersContainer;

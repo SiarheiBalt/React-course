@@ -9,7 +9,7 @@ const Header = ({ auth }) => {
         src="https://logodix.com/logo/35420.png"
       ></img>
       <div className="login__block">
-        {auth.isAuth ? auth.login : <NavLink to="/login">Login</NavLink>}
+        {auth.isAuth ? auth.login : <NavLink to="/Login">Login</NavLink>}
       </div>
     </HeaderDiv>
   );
